@@ -1,7 +1,6 @@
 
 # Weather app
 
-
 ## About Project
 
 This weather app with features: local weather by city name and weather widgets.
