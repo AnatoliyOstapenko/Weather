@@ -13,6 +13,7 @@
 		FADCF70A26AB270800FDBA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADCF70826AB270800FDBA33 /* Main.storyboard */; };
 		FADCF70C26AB270C00FDBA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADCF70B26AB270C00FDBA33 /* Assets.xcassets */; };
 		FADCF70F26AB270C00FDBA33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADCF70D26AB270C00FDBA33 /* LaunchScreen.storyboard */; };
+		FADCF71826AB272200FDBA33 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FADCF71726AB272200FDBA33 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FADCF70B26AB270C00FDBA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADCF70E26AB270C00FDBA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADCF71026AB270C00FDBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADCF71726AB272200FDBA33 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		FADCF6F626AB270800FDBA33 = {
 			isa = PBXGroup;
 			children = (
+				FADCF71726AB272200FDBA33 /* README.md */,
 				FADCF70126AB270800FDBA33 /* Weather */,
 				FADCF70026AB270800FDBA33 /* Products */,
 			);
@@ -58,13 +61,29 @@
 			children = (
 				FADCF70226AB270800FDBA33 /* AppDelegate.swift */,
 				FADCF70426AB270800FDBA33 /* SceneDelegate.swift */,
-				FADCF70626AB270800FDBA33 /* ViewController.swift */,
-				FADCF70826AB270800FDBA33 /* Main.storyboard */,
+				FADCF71B26AB285F00FDBA33 /* Control */,
+				FADCF71A26AB285400FDBA33 /* View */,
 				FADCF70B26AB270C00FDBA33 /* Assets.xcassets */,
 				FADCF70D26AB270C00FDBA33 /* LaunchScreen.storyboard */,
 				FADCF71026AB270C00FDBA33 /* Info.plist */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		FADCF71A26AB285400FDBA33 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FADCF70826AB270800FDBA33 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FADCF71B26AB285F00FDBA33 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				FADCF70626AB270800FDBA33 /* ViewController.swift */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +145,7 @@
 			files = (
 				FADCF70F26AB270C00FDBA33 /* LaunchScreen.storyboard in Resources */,
 				FADCF70C26AB270C00FDBA33 /* Assets.xcassets in Resources */,
+				FADCF71826AB272200FDBA33 /* README.md in Resources */,
 				FADCF70A26AB270800FDBA33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
