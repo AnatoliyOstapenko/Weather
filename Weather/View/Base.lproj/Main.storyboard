@@ -37,6 +37,9 @@
                                                         <state key="normal" backgroundImage="location.circle" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cC7-ob-st2"/>
+                                                        </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-fh-N8I">
                                                         <rect key="frame" x="50" y="0.0" width="314" height="45"/>
@@ -54,6 +57,9 @@
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcM-9v-7VH"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -209,6 +215,12 @@
                             <constraint firstItem="YzG-OS-BBh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xPc-fR-Zr7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="pyq-ne-BUb" id="Aq6-mg-iQj"/>
+                        <outlet property="cityTextField" destination="cgG-fh-N8I" id="Oxm-hl-ExF"/>
+                        <outlet property="temperatureLabel" destination="HkG-tT-ufa" id="Dti-6H-3On"/>
+                        <outlet property="widgetImage" destination="9vM-4r-wcE" id="6Bq-rg-EYI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
