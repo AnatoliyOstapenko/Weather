@@ -11,7 +11,6 @@ import Foundation
 
 struct Manager {
     
-    
  
     // set url from api.openweathermap.org without cityname
     let openweathermapUrl = "https://api.openweathermap.org/data/2.5/weather?appid=158ad76558d0df40e3b310c6152d85ce&units=metric"
@@ -62,9 +61,14 @@ struct Manager {
             // assign WeatherData struct to let decodedData to get needed data
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             
-            // get id from api.openweathermap.org
+            // get data from api.openweathermap.org via WeatherData
             let id = decodedData.weather[0].id
-            print(weatherCondition(id: id))
+            let name = decodedData.name
+            let temp = decodedData.main.temp
+            
+            let weatherModel = WeatherModel(cityName: name, condition: id, temperature: temp)
+            
+            print(weatherModel.weatherCondition)
             
             
         } catch {
@@ -72,26 +76,6 @@ struct Manager {
         }
    
     }
-    func weatherCondition (id: Int) -> String {
-        switch id {
-        case 200...232:
-            return "cloud.bolt"
-        case 300...321:
-            return "cloud.drizzle"
-        case 500...531:
-            return "cloud.rain"
-        case 600...622:
-            return "snow"
-        case 701...781:
-            return "smoke"
-        case 801...804:
-            return "cloud"
-        default:
-            return "sun.max"
-            
-        }
-        
-        
-    }
+    
     
 }

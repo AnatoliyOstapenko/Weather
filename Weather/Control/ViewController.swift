@@ -72,6 +72,8 @@ extension ViewController: UITextFieldDelegate {
         // transfer city name to func fullUrlName in Manager struct
         manager.fullUrlName(city)
         
+        
+        
 
         // to clear text in textTield
         searchTextField.text = ""
