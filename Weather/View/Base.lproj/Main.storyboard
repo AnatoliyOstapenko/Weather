@@ -18,6 +18,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="light_background" translatesAutoresizingMaskIntoConstraints="NO" id="YzG-OS-BBh" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-cW-l0z" userLabel="Total Stack View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
@@ -26,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSA-qX-cVN">
-                                                <rect key="frame" x="0.0" y="5" width="414" height="45"/>
+                                                <rect key="frame" x="6" y="5" width="402" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40g-yK-A7A" userLabel="Location Bytton">
                                                         <rect key="frame" x="0.0" y="0.5" width="50" height="44"/>
@@ -41,14 +42,14 @@
                                                             <action selector="locationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cC7-ob-st2"/>
                                                         </connections>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-fh-N8I">
-                                                        <rect key="frame" x="50" y="0.0" width="314" height="45"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter a city name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-fh-N8I">
+                                                        <rect key="frame" x="50" y="0.0" width="302" height="45"/>
                                                         <color key="backgroundColor" systemColor="systemFillColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QO7-t8-LIA" userLabel="Search Button">
-                                                        <rect key="frame" x="364" y="1" width="50" height="43"/>
+                                                        <rect key="frame" x="352" y="1" width="50" height="43"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="P9E-tw-qxE"/>
                                                         </constraints>
@@ -74,8 +75,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="0sW-Hq-2P8"/>
-                                            <constraint firstItem="pSA-qX-cVN" firstAttribute="leading" secondItem="j47-8u-DFs" secondAttribute="leading" id="D6y-sQ-c7C"/>
-                                            <constraint firstAttribute="trailing" secondItem="pSA-qX-cVN" secondAttribute="trailing" id="Pqf-Tf-rtd"/>
+                                            <constraint firstItem="pSA-qX-cVN" firstAttribute="leading" secondItem="j47-8u-DFs" secondAttribute="leading" constant="6" id="D6y-sQ-c7C"/>
+                                            <constraint firstAttribute="trailing" secondItem="pSA-qX-cVN" secondAttribute="trailing" constant="6" id="Pqf-Tf-rtd"/>
                                             <constraint firstAttribute="bottom" secondItem="pSA-qX-cVN" secondAttribute="bottom" id="SZW-IU-kfS"/>
                                             <constraint firstItem="pSA-qX-cVN" firstAttribute="top" secondItem="j47-8u-DFs" secondAttribute="top" constant="5" id="UVG-lI-juj"/>
                                         </constraints>
@@ -101,7 +102,7 @@
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9vM-4r-wcE">
                                                                                 <rect key="frame" x="50" y="0.0" width="106" height="100"/>
                                                                                 <color key="tintColor" systemColor="labelColor"/>
-                                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
+                                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <constraints>
@@ -217,7 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="pyq-ne-BUb" id="Aq6-mg-iQj"/>
-                        <outlet property="cityTextField" destination="cgG-fh-N8I" id="Oxm-hl-ExF"/>
+                        <outlet property="searchTextField" destination="cgG-fh-N8I" id="Oxm-hl-ExF"/>
                         <outlet property="temperatureLabel" destination="HkG-tT-ufa" id="Dti-6H-3On"/>
                         <outlet property="widgetImage" destination="9vM-4r-wcE" id="6Bq-rg-EYI"/>
                     </connections>
