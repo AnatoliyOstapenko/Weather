@@ -7,9 +7,9 @@
 
 import Foundation
 
-// set a struct with Decodable protocol to refer to openweathermap data
+// set a struct with Codable protocol to refer to openweathermap data
 // (A type that can decode itself from an external representation)
-struct WeatherData: Decodable {
+struct WeatherData: Codable {
     let name: String
     let weather: [Weather]
     let main: Main
@@ -17,11 +17,11 @@ struct WeatherData: Decodable {
     
 }
 // added Main struct to get temp in main object in api.openweathermap.org
-struct Main: Decodable {
+struct Main: Codable {
     let temp: Float
 }
 // added Main struct to get id in main object in api.openweathermap.org
-struct Weather: Decodable {
+struct Weather: Codable {
     let id: Int
 }
 

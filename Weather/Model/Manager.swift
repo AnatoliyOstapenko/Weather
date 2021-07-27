@@ -9,8 +9,16 @@
 
 import Foundation
 
+// added protocol to delegate data from row 62 to ViewController
+protocol ManagerDelegate {
+    
+    func didUpdateWeather(_ weather: WeatherModel)
+}
+
 struct Manager {
     
+    // initialization a protocol in Manager struct
+    var managerDelegate: ManagerDelegate?
  
     // set url from api.openweathermap.org without cityname
     let openweathermapUrl = "https://api.openweathermap.org/data/2.5/weather?appid=158ad76558d0df40e3b310c6152d85ce&units=metric"
@@ -41,7 +49,19 @@ struct Manager {
             }
             // unwrapping data to convert Data to String further
             if let safeData = data {
-                self.parseJSON(weatherData: safeData)
+                
+                // to return information from parseJSON, created let weather:
+                // 1) added let weather
+                // 4) unwrapping let weather because we added WeatherModel? struct before
+                
+                guard let weather = self.parseJSON(safeData) else {
+                    return
+                }
+                
+                // set delegate to dispatch wheater information to ViewController
+                // should to put self before delegation, because this line exist in closure
+                self.managerDelegate?.didUpdateWeather(weather)
+                
             }
         }
         
@@ -53,7 +73,8 @@ struct Manager {
     }
     // create func to parse JSON to get needed data
     // interaction with WeatherData struct with Decodable protocol
-    func parseJSON(weatherData: Data) {
+    // 2) added output optional WeatherModel? struct to return itself
+    func parseJSON(_ weatherData: Data) -> WeatherModel? {
         // initialized decoder from JSONDecoder class
         let decoder = JSONDecoder()
         // interact with Decodable WeatherData struct
@@ -66,13 +87,17 @@ struct Manager {
             let name = decodedData.name
             let temp = decodedData.main.temp
             
+            // added weatherModel to dispatch received data above to WeatherModel struct
             let weatherModel = WeatherModel(cityName: name, condition: id, temperature: temp)
+            // 3) added return weatherModel to avoid error
+            return weatherModel
             
-            print(weatherModel.weatherCondition)
+ 
             
             
         } catch {
             print(error)
+            return nil
         }
    
     }

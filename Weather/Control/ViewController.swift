@@ -10,8 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var manager = Manager()
-    
 
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var widgetImage: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -21,8 +21,12 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check out how new icons work
+        widgetImage.image = UIImage(systemName: "cloud.moon.rain")
         // set delegate to adress to UITextFieldDelegate protocol
         searchTextField.delegate = self
+        // delegation from Manager activated
+        manager.managerDelegate = self
         
     }
 
@@ -72,15 +76,31 @@ extension ViewController: UITextFieldDelegate {
         // transfer city name to func fullUrlName in Manager struct
         manager.fullUrlName(city)
         
-        
-        
 
         // to clear text in textTield
         searchTextField.text = ""
         
     }
+    
 
+}
+// extension to receive weather information delegated from Manager struct
+extension ViewController: ManagerDelegate {
+    
+    func didUpdateWeather(_ weather: WeatherModel) {
 
+        // to avoid crush and error like "... must be used from main thread only"
+        // to avoid frozen app state use Dispatch Queue
+        // added self cause it's in closure
+        DispatchQueue.main.async {
+            
+            // added data from Manager struct by WeatherModel struct to show them on the screen
+            self.temperatureLabel.text = weather.temp
+            self.cityLabel.text = weather.cityName
+            self.widgetImage.image = UIImage(systemName: weather.weatherCondition)
+        }
+    }
+    
     
 }
 
