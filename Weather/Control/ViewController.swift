@@ -107,7 +107,7 @@ extension ViewController: UITextFieldDelegate {
 // extension to receive weather information delegated from Manager struct
 extension ViewController: ManagerDelegate {
 
-    func didUpdateWeather(_ manager: WeatherManager, _ weather: WeatherModel) {
+    func didUpdateWeather(_ weather: WeatherModel) {
 
         // to avoid crush and error like "... must be used from main thread only"
         // to avoid frozen app state use Dispatch Queue
@@ -138,8 +138,9 @@ extension ViewController: CLLocationManagerDelegate {
                 let lon = Float(location.coordinate.longitude)
                 let lat = Float(location.coordinate.latitude)
                 
+                // dispatched coordinates to WeatherManager
                 weatherManager.getLocation(lat, lon)
-                print("longitude is \(lon), latitude is \(lat)")
+                
             }
         }
     }

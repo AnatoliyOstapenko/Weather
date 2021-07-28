@@ -12,7 +12,7 @@ import Foundation
 // added protocol to delegate data from row 62 to ViewController
 protocol ManagerDelegate {
     
-    func didUpdateWeather(_ manager: WeatherManager, _ weather: WeatherModel)
+    func didUpdateWeather(_ weather: WeatherModel)
 }
 
 struct WeatherManager {
@@ -26,15 +26,15 @@ struct WeatherManager {
     // get full url string by city name
     func fullUrlName(_ cityName: String) {
         let openweathermapUrlPlusCityName = "\(openweathermapUrl)&q=\(cityName)"
-        performRequest(urlString: openweathermapUrlPlusCityName)
+        performRequest(openweathermapUrlPlusCityName)
     }
     // get full url name by location
     func getLocation(_ latitude: Float, _ longitude: Float) {
         let openweathermapURLPlusLocation = "\(openweathermapUrl)&lat=\(latitude)&lon=\(longitude)"
-        performRequest(urlString: openweathermapURLPlusLocation)
+        performRequest(openweathermapURLPlusLocation)
     }
     
-    func performRequest(urlString: String) {
+    func performRequest(_ urlString: String) {
         
         // trigger struct URL to pass openweathermap URL with city name
         // unwrapping url to proceed further
@@ -65,7 +65,7 @@ struct WeatherManager {
                 
                 // set delegate to dispatch wheater information to ViewController
                 // should to put self before delegation, because this line exist in closure
-                self.managerDelegate?.didUpdateWeather(self, weather)
+                self.managerDelegate?.didUpdateWeather(weather)
                 
             }
         }
