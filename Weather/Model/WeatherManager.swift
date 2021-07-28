@@ -12,10 +12,10 @@ import Foundation
 // added protocol to delegate data from row 62 to ViewController
 protocol ManagerDelegate {
     
-    func didUpdateWeather(_ weather: WeatherModel)
+    func didUpdateWeather(_ manager: WeatherManager, _ weather: WeatherModel)
 }
 
-struct Manager {
+struct WeatherManager {
     
     // initialization a protocol in Manager struct
     var managerDelegate: ManagerDelegate?
@@ -23,10 +23,15 @@ struct Manager {
     // set url from api.openweathermap.org without cityname
     let openweathermapUrl = "https://api.openweathermap.org/data/2.5/weather?appid=158ad76558d0df40e3b310c6152d85ce&units=metric"
     
+    // get full url string by city name
     func fullUrlName(_ cityName: String) {
-        
         let openweathermapUrlPlusCityName = "\(openweathermapUrl)&q=\(cityName)"
         performRequest(urlString: openweathermapUrlPlusCityName)
+    }
+    // get full url name by location
+    func getLocation(_ latitude: Float, _ longitude: Float) {
+        let openweathermapURLPlusLocation = "\(openweathermapUrl)&lat=\(latitude)&lon=\(longitude)"
+        performRequest(urlString: openweathermapURLPlusLocation)
     }
     
     func performRequest(urlString: String) {
@@ -60,7 +65,7 @@ struct Manager {
                 
                 // set delegate to dispatch wheater information to ViewController
                 // should to put self before delegation, because this line exist in closure
-                self.managerDelegate?.didUpdateWeather(weather)
+                self.managerDelegate?.didUpdateWeather(self, weather)
                 
             }
         }

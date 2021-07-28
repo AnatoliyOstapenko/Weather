@@ -6,10 +6,15 @@
 //
 
 import UIKit
+// to import CoreLocation to get location data
+import CoreLocation
 
 class ViewController: UIViewController {
     
-    var manager = Manager()
+    var weatherManager = WeatherManager()
+    // initializated CLLocationManager class to get location data
+    // after that: go to info.plist and set Localization to "Privacy Location when in use Usage Description"
+    let locationManager = CLLocationManager()
 
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -21,12 +26,25 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //delegated location manager (!always the first in viewDid)
+        locationManager.delegate = self
+        
+        //triggered permission request: when user use app
+        locationManager.requestWhenInUseAuthorization()
+        
+        // add one time request user location
+        // if you need to get user location constantly sett func: startUpdatingLocation()
+        locationManager.requestLocation()
+        
+        
+        
         //check out how new icons work
         widgetImage.image = UIImage(systemName: "cloud.moon.rain")
         // set delegate to adress to UITextFieldDelegate protocol
         searchTextField.delegate = self
         // delegation from Manager activated
-        manager.managerDelegate = self
+        weatherManager.managerDelegate = self
         
     }
 
@@ -74,7 +92,7 @@ extension ViewController: UITextFieldDelegate {
             return
         }
         // transfer city name to func fullUrlName in Manager struct
-        manager.fullUrlName(city)
+        weatherManager.fullUrlName(city)
         
 
         // to clear text in textTield
@@ -86,8 +104,8 @@ extension ViewController: UITextFieldDelegate {
 }
 // extension to receive weather information delegated from Manager struct
 extension ViewController: ManagerDelegate {
-    
-    func didUpdateWeather(_ weather: WeatherModel) {
+
+    func didUpdateWeather(_ manager: WeatherManager, _ weather: WeatherModel) {
 
         // to avoid crush and error like "... must be used from main thread only"
         // to avoid frozen app state use Dispatch Queue
@@ -98,9 +116,34 @@ extension ViewController: ManagerDelegate {
             self.temperatureLabel.text = weather.temp
             self.cityLabel.text = weather.cityName
             self.widgetImage.image = UIImage(systemName: weather.weatherCondition)
+            
         }
     }
     
     
+}
+// extension for CLLocationManagerDelegate protocol to get user location
+extension ViewController: CLLocationManagerDelegate {
+        // defauult apple's function to get user location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //unwrapping last user location
+        if let location = locations.last {
+            // The radius of uncertainty for the location, measured in meters
+            if location.horizontalAccuracy > 0 {
+                // stop location process when user was located
+                locationManager.stopUpdatingLocation()
+                
+                let lon = Float(location.coordinate.longitude)
+                let lat = Float(location.coordinate.latitude)
+                
+                weatherManager.getLocation(lat, lon)
+                print("longitude is \(lon), latitude is \(lat)")
+            }
+        }
+    }
+    // default apple's func is needed if location update failed (avoid frozen app)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("location update failed, \(error) ")
+    }
 }
 
