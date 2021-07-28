@@ -50,6 +50,8 @@ class ViewController: UIViewController {
 
     
     @IBAction func locationButton(_ sender: UIButton) {
+        // activated location request when button pressed
+        locationManager.requestLocation()
         // hide keyboard when stepper pressed
         searchTextField.endEditing(true)
         
